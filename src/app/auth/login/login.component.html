@@ -1,0 +1,17 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onLogin()" [formGroup]="loginForm">
+        <mat-form-field>
+            <input matInput type="email" placeholder="Your Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Your password" formControlName="password">
+        </mat-form-field>
+        <button 
+        mat-raised-button 
+        type="submit" 
+        color="primary" 
+        [disabled]="!loginForm"
+        *ngIf="!(isLoading$ | async)">Login</button>
+        <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+    </form>
+</section>

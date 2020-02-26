@@ -1,0 +1,29 @@
+<section
+fxLayout="column"
+fxLayoutAlign="center center"
+fxLayoutGap="40px">
+  <mat-card
+    class="lg-size"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="40px"
+   >
+    <h3>{{poll.question }}</h3>
+    <form [formGroup]="voteButtonForm"
+    (ngsubmit)="onSubmitVote()">
+      <mat-radio-group
+      formControlName="vote"
+      fxLayout="column"
+      fxLayoutGap="10px"
+      fxLayoutAlign="center center">
+        <mat-radio-button
+        class="vote-button"
+        *ngFor="let myOption of poll.options; let i = index;"
+        [value]="myOption" >{{myOption}}</mat-radio-button>
+      </mat-radio-group>
+      <button type="button"
+      (click)="onSubmitVote()"
+      mat-raised-button>Rock the vote</button>
+    </form>
+  </mat-card>
+</section>

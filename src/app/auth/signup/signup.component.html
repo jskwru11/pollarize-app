@@ -1,0 +1,23 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="onSignup()" [formGroup]="signupForm">
+        <mat-form-field>
+            <input matInput type="email" placeholder="Your Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Your password" formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-checkbox color="primary" formControlName="agreement">Agree to Terms and Conditions</mat-checkbox>
+        <button 
+        mat-raised-button 
+        type="submit" 
+        color="primary" 
+        [disabled]="!signupForm.valid"
+        *ngIf="!(isLoading$ | async)">Sign Up</button>
+        <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+    </form>
+</section>

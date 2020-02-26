@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>Pollarize Polls</mat-card-title>
+  <mat-card-content>
+    <table *ngIf="dataSource.data?.length > 0;else noPolls" mat-table [dataSource]='dataSource'>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td *matCellDef="let element">{{ element.date.toDate() | date: 'MM/dd/yyyy' }}</td>
+        <mat-divider></mat-divider>
+      </ng-container>
+      <ng-container matColumnDef="question">
+        <th mat-header-cell *matHeaderCellDef>Question</th>
+        <td *matCellDef="let element">{{ element.question }}</td>
+        <mat-divider></mat-divider>
+      </ng-container>
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>State</th>
+        <td *matCellDef="let element">{{ element.state }}</td>
+      </ng-container>
+      <mat-divider></mat-divider>
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef>URL</th>
+        <td *matCellDef="let element">{{ element.url }}</td>
+        <mat-divider></mat-divider>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    <ng-template #noPolls>
+      <hr>
+      <h5>There are no polls in the system.</h5>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
